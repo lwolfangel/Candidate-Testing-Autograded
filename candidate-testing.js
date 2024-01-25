@@ -11,9 +11,15 @@ let candidateAnswer = ""
 
 
 //TODO: Variables for Part 2
-let questions;
-let correctAnswers;
-let candidateAnswers;
+let questions = ["Who was the first American woman in space? ", 
+                 "True or false: 5 kilometer == 5000 meters? ", 
+                 "(5 + 3)/2 * 10 = ? ",
+                 "Given the array [8, 'Orbit', 'Trajectory', 45], what entry is at index 2? ",
+                 "What is the minimum crew size for the ISS? "]
+let correctAnswers = ["Sally Ride", "true", "40", "Trajectory", "3"]
+let candidateAnswers = [];
+
+runProgram()
 
 
 function askForName() {
@@ -26,16 +32,31 @@ function askForName() {
 function askQuestion() {
   // TODO 1.2b: Ask candidate the question and assign the response as candidateAnswer //
   const input = require('readline-sync');
-  candidateAnswer = input.question(question)
+
+  for(let i = 0; i < questions.length; i++) {
+    candidateAnswers[candidateAnswers.length] = input.question(questions[i]);
+  }
 }
 
 function gradeQuiz(candidateAnswers) {
 
   // TODO 1.2c: Let the candidate know if they have answered the question correctly or incorrectly // 
-  if  (candidateAnswer === correctAnswer) {
+ /*if  (candidateAnswer === correctAnswer) {
     console.log("You answered correctly, congratulations")
   } else {
     console.log("Your answer is incorrect, better luck next time")
+  } */
+
+  let answer = "";
+  let actual = "";
+  let output = "";
+  
+  for(let i = 0; i < candidateAnswers.length; i++) {
+    answer = candidateAnswers[i];
+    actual = correctAnswers[i];
+    output = `Candidate answer = ${answer}     , Actual answer = ${actual}`;
+    
+    console.log(output);
   }
 
   let grade;  //TODO 3.2 use this variable to calculate the candidates score.
@@ -49,7 +70,7 @@ function runProgram() {
   // TODO 1.1c: Greet candidate using their name //
    console.log();
   askQuestion();
-  gradeQuiz(this.candidateAnswers);
+  gradeQuiz(candidateAnswers); //Ask about this, had to remove "this." for it to work
 }
 
 // ----------- Don't write any code or change any code below this line ---------- //

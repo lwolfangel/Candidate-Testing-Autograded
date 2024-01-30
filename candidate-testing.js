@@ -10,6 +10,7 @@ let correctAnswer = 'Sally Ride'
 let candidateAnswer = ""
 
 
+
 //TODO: Variables for Part 2
 let questions = ["Who was the first American woman in space? ", 
                  "True or false: 5 kilometer == 5000 meters? ", 
@@ -19,7 +20,7 @@ let questions = ["Who was the first American woman in space? ",
 let correctAnswers = ["Sally Ride", "true", "40", "Trajectory", "3"]
 let candidateAnswers = [];
 
-runProgram()
+
 
 
 function askForName() {
@@ -50,18 +51,31 @@ function gradeQuiz(candidateAnswers) {
   let answer = "";
   let actual = "";
   let output = "";
-  
+
+  let rightAnswer = 0
+
   for(let i = 0; i < candidateAnswers.length; i++) {
     answer = candidateAnswers[i];
     actual = correctAnswers[i];
     output = `Candidate answer = ${answer}     , Actual answer = ${actual}`;
     
     console.log(output);
+  
+
+    if(candidateAnswers[i].toLowerCase() === correctAnswers[i].toLowerCase()) {
+      rightAnswer += 1;
+    } 
   }
 
-  let grade;  //TODO 3.2 use this variable to calculate the candidates score.
 
-
+  let grade = (rightAnswer/correctAnswers.length) * 100;
+   //TODO 3.2 use this variable to calculate the candidates score. 
+  if(grade >= 80) {
+    console.log("Congratulations, you have passed with a score of " + grade);
+  }  
+  else {
+    console.log("Sorry, you have failed with a score of " + grade);
+  }
   return grade;
 }
 
